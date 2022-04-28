@@ -1,0 +1,63 @@
+﻿@using AspNetMVC.LabExercise1.Configuration;
+@using AspNetMVC.LabExercise1.Models;
+@using System.Collections.Generic;
+@{
+    var emailSettings = ViewData["EmailSettings"] as EmailSettings;
+    var productList = ViewData["ProductList"] as List<Product>;
+    var productGrandTotal = ViewData["ProductGrandTotal"];
+}
+
+<div>
+    <h2>Product List</h2>
+</div>
+
+<style type="text/css">table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #ffcc00;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #ffcc00;
+}
+</style>
+<table class="GeneratedTable">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>TotalAmount</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var product in productList)
+		{
+			<tr>
+				<td>@product.Id</td>
+				<td>@product.Name</td>
+				<td>@product.Description</td>
+				<td>@product.Quantity</td>
+				<td>@product.Price.ToString("C2")</td>
+				<td>@product.TotalAmount.ToString("C2")</td>
+			</tr>
+		}
+		<tr>
+			<td colspan="5">Grand Total</td>
+			<td>@productGrandTotal</td>
+		</tr>
+	</tbody>
+</table>
